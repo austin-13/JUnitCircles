@@ -1,0 +1,75 @@
+<!-- Sample Ant build file for Circles -->
+<project name="circles" default="compile">
+
+   <!-- CHANGE THIS FOR YOUR SYSTEM
+        property to allow ant to find junit -->
+   <property name="junitjar" location="/home/jcook/tools/junit/junit-platform-console-standalone-1.9.0.jar"/>
+   <!-- property to allow ant to find jacoco: CHANGE THE PATH to point to yours -->
+   <property name="jacocodir" location="/home/jcook/tools/jacoco-0.8.8/lib"/>
+   <property name="jacococlijar" location="/home/jcook/tools/jacoco-0.8.8/lib/jacococli.jar"/>
+
+   <!-- standard compile task, but turn debugging on for source viewing -->
+   <target name="compile" description="compile the source">
+      <mkdir dir="class"/>
+      <javac srcdir="." destdir="class" includeantruntime="false" debug="true" classpath="${junitjar}"/>
+   </target>
+
+   <target name="instrument" description="add coverage instrumentation" depends="compile">
+      <java jar="${jacococlijar}" classpath="./class" fork="true">
+         <arg value="instrument"/>
+         <arg value="class/Circle1.class"/>
+         <arg value="class/Circle2.class"/>
+         <arg value="class/CircleRun.class"/>
+         <arg value="class/Circle.class"/>
+         <arg value="class/Point.class"/>
+         <arg value="--dest"/>
+         <arg value="covinst"/>
+      </java>
+   </target>
+
+   <target name="report" description="generate jacoco report" depends="run,junit">
+      <delete>
+         <fileset dir="./covinst" includes="*.*"/>
+      </delete>
+      <java jar="${jacococlijar}" classpath="." fork="true">
+         <arg value="report"/>
+         <arg value="jacoco.exec"/>
+         <arg value="--classfiles"/>
+         <arg value="."/>
+         <arg value="--sourcefiles"/>
+         <arg value="."/>
+         <arg value="--html"/>
+         <arg value="html"/>
+      </java>
+   </target>
+
+   <!-- standard run task, do "ant run" for this task -->
+   <target name="run" description="run CircleRun" depends="instrument">
+      <echo message="Run some circles! args: 1 2 4 4 5 4"/>
+      <java classpath="covinst:${jacocodir}/jacocoagent.jar" classname="CircleRun" fork="true">
+         <arg value="1"/><arg value="2"/><arg value="4"/>
+         <arg value="4"/><arg value="5"/><arg value="4"/>
+      </java>
+   </target>
+
+   <!-- Execute JUnit tests, do "ant junit" to do this task -->
+   <target name="junit" description="run JUnit tests" depends="instrument">
+      <java jar="${junitjar}" classpath="." fork="true">
+         <jvmarg value = "-javaagent:${jacocodir}/jacocoagent.jar=excludes=*"/>
+         <arg value="--classpath=covinst:class"/>
+         <arg value="-c"/><arg value="Circle1Test"/>
+      </java>
+   </target>
+
+   <!-- clean up by removing all generated files; do "ant clean" to start afresh -->
+   <target name="clean">
+      <delete>
+         <fileset dir="./class" includes="*.*"/>
+         <fileset dir="./covinst" includes="*.*"/>
+         <fileset dir="./html" includes="*.*"/>
+         <fileset dir="." includes="jacoco.exec"/>
+      </delete>
+   </target>
+
+</project>
+
