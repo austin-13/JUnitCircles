@@ -31,7 +31,10 @@ public Circle(double x, double y, double radius)
 **/
 public double scale(double factor)
 {
-   radius = radius + factor;
+   if  (factor < 0) {
+      return radius;
+   }
+   radius = radius * factor;
    return radius;
 }
 
