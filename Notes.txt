@@ -1,0 +1,65 @@
+CircleTesting
+
+Circle1: 
+1. Test radius increase 
+    1. Error: scale method is radius + factor instead of radius * factor.
+    2. Found in test: simpleScaleIncrease()
+2. Test radius decrease
+    1. Error: if the factor was negative it didn’t return the original radius.
+    2. Found in test: simpleScaleDecrease()
+3. Test intersection of two circles with changing x values
+    1. The formula for calculating the intersection was incorrect.
+    2. Found in test: doesIntersectDifferentX() & doesntIntersectDifferentX()
+4. Test intersection of two circles with changing y values
+    1. Test passed with fixed from number 3.
+    2. Found in test: doesIntersectDifferentY() & doesntIntersectDifferentY()
+5. Test intersection of two circles with changing x and y values
+    1. Test passed with fixed from number 3.
+    2. Found in test: doesIntersectDifferentXY() & doesntIntersectDifferentXY()
+6. Test no intersection of two circles
+    1. Test passed with fixed from number 3.
+    2. Found in test: noIntersection()
+7. Test circle initialization with all positive values
+    1. Test passed, not fixes needed.
+    2. Found in test: initCirclePos()
+8. Test circle initialization with all negative values
+    1. Test passed, not fixes needed.
+    2. Found in test: initCircleNeg()
+9. Test circle initialization with +x, -y
+    1. Test passed, not fixes needed.
+    2. Found in test: initCirclePosXNegY()
+10. Test circle initialization with -x, +y
+    1. Test passed, not fixes needed.
+    2. Found in test: initCircleNegXPosY()
+
+Circle2:
+1. Test radius increase 
+    1. Test passed no fixes needed.
+    2. Found in test: simpleScaleIncrease()
+2. Test radius decrease
+    1. Test passed no fixes needed.
+    2. Found in test: simpleScaleDecrease()
+3. Test intersection of two circles with changing x values
+    1. Error: x and y were switched for the constructor.
+    2. Found in test: doesIntersectDifferentX() & doesntIntersectDifferentX()
+4. Test intersection of two circles with changing y values
+    1. Test passed with fixed from number 3.
+    2. Found in test: doesIntersectDifferentY() & doesntIntersectDifferentY()
+5. Test intersection of two circles with changing x and y values
+    1. Test passed with fixed from number 3.
+    2. Found in test: doesIntersectDifferentXY() & doesntIntersectDifferentXY()
+6. Test no intersection of two circles
+    1. Test passed with fixed from number 3.
+    2. Found in test: noIntersection()
+7. Test circle initialization with all positive values
+    1. Test passed with fixed from number 3.
+    2. Found in test: initCirclePos()
+8. Test circle initialization with all negative values
+    1. Test passed with fixed from number 3.
+    2. Found in test: initCircleNeg()
+9. Test circle initialization with +x, -y
+    1. Test passed with fixed from number 3.
+    2. Found in test: initCirclePosXNegY()
+10. Test circle initialization with -x, +y
+    1. Test passed with fixed from number 3.
+    2. Found in test: initCircleNegXPosY()

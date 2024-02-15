@@ -25,6 +25,7 @@
       <java jar="${junitjar}" classpath="." fork="true">
          <arg value="--classpath=."/>
          <arg value="-c"/><arg value="Circle1Test"/>
+         <arg value="-c"/><arg value="Circle2Test"/>
       </java>
    </target>
 

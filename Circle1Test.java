@@ -172,5 +172,69 @@ public void noIntersection()
    assertTrue(!intersects);
 }
 
+//
+// Test initialization of a circle with positive values
+//
+@Test
+public void initCirclePos()
+{
+   int x = 1;
+   int y = 2;
+   double radius = 3;
+   Circle circle2 = new Circle1(x,y,radius);
+   System.out.println("Running test initCirclePos.");
+   assertTrue(x == circle2.center.x);
+   assertTrue(y == circle2.center.y);
+   assertTrue(radius == circle2.radius);
+}
+
+//
+// Test initialization of a circle with negative values
+//
+@Test
+public void initCircleNeg()
+{
+   int x = -1;
+   int y = -2;
+   double radius = -3;
+   Circle circle2 = new Circle1(x,y,radius);
+   System.out.println("Running test initCircleNeg.");
+   assertTrue(x == circle2.center.x);
+   assertTrue(y == circle2.center.y);
+   assertTrue(radius == circle2.radius);
+}
+
+//
+// Test initialization of a circle with positive x values and negative y values
+//
+@Test
+public void initCirclePosXNegY()
+{
+   int x = 1;
+   int y = -2;
+   double radius = 3;
+   Circle circle2 = new Circle1(x,y,radius);
+   System.out.println("Running test initCirclePosXNegY.");
+   assertTrue(x == circle2.center.x);
+   assertTrue(y == circle2.center.y);
+   assertTrue(radius == circle2.radius);
+}
+
+//
+// Test initialization of a circle with negative x values and positive y values
+//
+@Test
+public void initCircleNegXPosY()
+{
+   int x = -1;
+   int y = 2;
+   double radius = 3;
+   Circle circle2 = new Circle1(x,y,radius);
+   System.out.println("Running test initCircleNegXPosY.");
+   assertTrue(x == circle2.center.x);
+   assertTrue(y == circle2.center.y);
+   assertTrue(radius == circle2.radius);
+}
+
 }
 
