@@ -133,5 +133,44 @@ public void doesntIntersectDifferentY()
    assertTrue(!intersects);
 }
 
+//
+// Test intersection of two circles with changing x and y values
+//
+@Test
+public void doesIntersectDifferentXY()
+{
+   Circle circle2 = new Circle1(1,1,5);
+   Circle circle3 = new Circle1(3,3,5);
+   System.out.println("Running test doesIntersectDifferentXY.");
+   boolean intersects = circle2.intersects(circle3);
+   assertTrue(intersects);
+}
+
+//
+// Test intersection of two circles with changing X and Y values
+//
+@Test
+public void doesntIntersectDifferentXY()
+{
+   Circle circle2 = new Circle1(0,0,5);
+   Circle circle3 = new Circle1(10,10,5);
+   System.out.println("Running test doesntIntersectDifferentXY.");
+   boolean intersects = circle2.intersects(circle3);
+   assertTrue(!intersects);
+}
+
+//
+// Test intersection of two circles with no intersections
+//
+@Test
+public void noIntersection()
+{
+   Circle circle2 = new Circle1(0,3,2);
+   Circle circle3 = new Circle1(20,30,12);
+   System.out.println("Running test noIntersection.");
+   boolean intersects = circle2.intersects(circle3);
+   assertTrue(!intersects);
+}
+
 }
 
